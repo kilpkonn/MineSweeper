@@ -18,15 +18,6 @@ class MinesweeperViewController: UIViewController {
         updateOrientation()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
-        
-        addColumn()
-        addColumn()
-        addRow()
-        addRow()
-        addColumn()
-        addRow()
-        addColumn()
-        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -47,7 +38,7 @@ class MinesweeperViewController: UIViewController {
         return columnStack
     }
     
-    private func addRow() {
+    @IBAction func addRow(_ sender: Any) {
         if (gameBoard.arrangedSubviews.count == 0) {
             let columnStack = createColumnStack()
             gameBoard.addArrangedSubview(columnStack)
@@ -62,9 +53,9 @@ class MinesweeperViewController: UIViewController {
         }
     }
     
-    private func addColumn() {
+    @IBAction func addColumn(_ sender: Any) {
         if (gameBoard.arrangedSubviews.count == 0) {
-            addRow()
+            addRow(sender)
             return
         }
         let columnStack = createColumnStack()
@@ -81,12 +72,26 @@ class MinesweeperViewController: UIViewController {
         gameBoard.addArrangedSubview(columnStack)
     }
     
-    private func removeRow() {
-        
+    @IBAction func removeRow(_ sender: Any) {
+        for col in gameBoard.arrangedSubviews {
+            if let colStack = col as? UIStackView {
+                if let tile = colStack.arrangedSubviews.last {
+                    colStack.removeArrangedSubview(tile)
+                    tile.removeFromSuperview()
+                }
+            }
+        }
     }
     
-    private func removeColumn() {
-        
+    @IBAction func removeColumn(_ sender: Any) {
+        if let col = gameBoard.arrangedSubviews.last as? UIStackView {
+            for tile in col.arrangedSubviews {
+                col.removeArrangedSubview(tile)
+                tile.removeFromSuperview()
+            }
+            gameBoard.removeArrangedSubview(col)
+            col.removeFromSuperview()
+        }
     }
     
     @objc func updateOrientation() {

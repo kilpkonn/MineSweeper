@@ -27,6 +27,8 @@ class UITileView: UIView {
     var colorBorder: UIColor = UIColor.darkGray {didSet {setNeedsDisplay()}}
     @IBInspectable
     var colorBackground: UIColor = UIColor.lightGray {didSet {setNeedsDisplay()}}
+    @IBInspectable
+    var colorBehind: UIColor = UIColor.white {didSet {setNeedsDisplay()}}
     
     @IBInspectable
     var colorOne: UIColor = UIColor.blue {didSet {setNeedsDisplay()}}
@@ -82,6 +84,10 @@ class UITileView: UIView {
     }
     
     private func drawBorder() {
+        colorBehind.set()
+        let behindPath = UIBezierPath(roundedRect: bounds, cornerRadius: 0)
+        behindPath.fill()
+        
         colorBorder.set()
         
         let path = UIBezierPath(roundedRect: bounds, cornerRadius: 10)
