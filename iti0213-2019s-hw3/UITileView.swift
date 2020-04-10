@@ -19,7 +19,7 @@ class UITileView: UIView {
         case BAIT
     }
     
-    var state: TileState = TileState.NUMBER{didSet {setNeedsDisplay()}}
+    var state: TileState = TileState.HIDDEN {didSet {setNeedsDisplay()}}
     
     @IBInspectable
     var colorHidden: UIColor = UIColor.gray {didSet {setNeedsDisplay()}}
