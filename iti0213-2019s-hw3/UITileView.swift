@@ -52,6 +52,16 @@ class UITileView: UIView {
     // Should be 1:1 aspect ratio tho
     private var size: Int {return Int(bounds.width > bounds.height ? bounds.height : bounds.width)}
     
+    init(frame: CGRect, x: Int, y: Int) {
+        super.init(frame: frame)
+        self.positionX = x
+        self.positionY = y
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func draw(_ rect: CGRect) {
         drawBorder()
         switch state {
