@@ -19,14 +19,15 @@ class UITileView: UIView {
         case BAIT
     }
     
-    var state: TileState = TileState.FLAG {didSet {setNeedsDisplay()}}
+    var state: TileState = TileState.NUMBER{didSet {setNeedsDisplay()}}
     
     @IBInspectable
     var colorHidden: UIColor = UIColor.gray {didSet {setNeedsDisplay()}}
     @IBInspectable
-    var colorEmpty: UIColor = UIColor.darkGray {didSet {setNeedsDisplay()}}
+    var colorBorder: UIColor = UIColor.darkGray {didSet {setNeedsDisplay()}}
     @IBInspectable
-    var colorBomb: UIColor = UIColor.black {didSet {setNeedsDisplay()}}
+    var colorBackground: UIColor = UIColor.lightGray {didSet {setNeedsDisplay()}}
+    
     @IBInspectable
     var colorOne: UIColor = UIColor.blue {didSet {setNeedsDisplay()}}
     @IBInspectable
@@ -36,9 +37,8 @@ class UITileView: UIView {
     @IBInspectable
     var colorMore: UIColor = UIColor.purple {didSet {setNeedsDisplay()}}
     @IBInspectable
-    var colorFlag: UIColor = UIColor.red {didSet {setNeedsDisplay()}}
-    @IBInspectable
-    var colorBait: UIColor = UIColor.orange {didSet {setNeedsDisplay()}}
+    var colorCross: UIColor = UIColor.red {didSet {setNeedsDisplay()}}
+    
     
     @IBInspectable
     var positionX: Int = 0
@@ -53,44 +53,47 @@ class UITileView: UIView {
     private var size: Int {return Int(bounds.width > bounds.height ? bounds.height : bounds.width)}
     
     override func draw(_ rect: CGRect) {
+        drawBorder()
         switch state {
         case .HIDDEN:
-            break
+            drawHidden()
         case .EMPTY:
-            drawBorder()
+            break
         case .BOMB:
-            break
+            drawText(text: "💣", color: UIColor.black)
         case .NUMBER:
-            break
+            drawText(text: closeBombsCount > 0 ? String(closeBombsCount) : "", color: getNumberColor(number: closeBombsCount))
         case .FLAG:
-            drawText(text: "a")
+            drawText(text: "🚩", color: UIColor.black)
         case .BAIT:
-            drawText(text: "b")
+            drawText(text: "💣", color: UIColor.black)
             drawCross()
         }
     }
     
     private func drawBorder() {
-        let path = UIBezierPath()
-    
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: size, y: 0))
-        path.addLine(to: CGPoint(x: size, y: size))
-        path.addLine(to: CGPoint(x: 0, y: size))
-        path.addLine(to: CGPoint(x: 0, y: 0))
-        path.lineWidth = 8
-        path.stroke()
-    }
-    
-    private func drawText(text: String) {
-        colorEmpty.set()
+        colorBorder.set()
+        
         let path = UIBezierPath(roundedRect: bounds, cornerRadius: 10)
         path.fill()
         
-        let font=UIFont(name: "Helvetica-Bold", size: CGFloat(size))!
+        colorBackground.set()
+        let centerPath = UIBezierPath(roundedRect: bounds.insetBy(dx: 4, dy: 4), cornerRadius: 10)
+        centerPath.fill()
+
+    }
+    
+    private func drawHidden() {
+        colorBorder.set()
+        let path = UIBezierPath(roundedRect: bounds, cornerRadius: 10)
+        path.fill()
+    }
+    
+    private func drawText(text: String, color: UIColor) {
+        let font=UIFont(name: "Helvetica-Bold", size: CGFloat(Double(size) * 0.9))!
         let text_style=NSMutableParagraphStyle()
         text_style.alignment=NSTextAlignment.center
-        let text_color=UIColor.white
+        let text_color=color
         let attributes=[NSAttributedString.Key.font:font, NSAttributedString.Key.paragraphStyle:text_style, NSAttributedString.Key.foregroundColor:text_color]
 
         //vertically center (depending on font)
@@ -103,14 +106,7 @@ class UITileView: UIView {
     private func drawCross() {
         let path = UIBezierPath()
         let sizef = Double(size)
-
-        path.addArc(withCenter: CGPoint(x: size/2, y: size/2),
-                    radius: CGFloat(size/4),
-                    startAngle: 0,
-                    endAngle: CGFloat(2 * Double.pi),
-                    clockwise: true
-        )
-        
+        colorCross.set()
         path.move(to: CGPoint(x: sizef/5, y: sizef/5))
         path.addLine(to: CGPoint(x: sizef-sizef/5, y: sizef-sizef/5))
         path.move(to: CGPoint(x: sizef/5, y: sizef-sizef/5))
