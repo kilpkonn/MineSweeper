@@ -12,7 +12,6 @@ import UIKit
 class UITileView: UIView {
     enum TileState {
         case HIDDEN
-        case EMPTY
         case BOMB
         case NUMBER
         case FLAG
@@ -69,8 +68,6 @@ class UITileView: UIView {
         switch state {
         case .HIDDEN:
             drawHidden()
-        case .EMPTY:
-            break
         case .BOMB:
             drawText(text: "💣", color: UIColor.black)
         case .NUMBER:
@@ -114,8 +111,8 @@ class UITileView: UIView {
 
         //vertically center (depending on font)
         let text_h=font.lineHeight
-        let text_y=(CGFloat(size)-text_h)/2
-        let text_rect=CGRect(x: 0, y: text_y, width: CGFloat(size), height: text_h)
+        let text_y=(CGFloat(bounds.height)-text_h)/2
+        let text_rect=CGRect(x: (bounds.width - CGFloat(size)) / 2, y: text_y, width: CGFloat(size), height: text_h)
         text.draw(in: text_rect.integral, withAttributes: attributes)
     }
     

@@ -133,7 +133,8 @@ class MinesweeperViewController: UIViewController {
                             } else if (gameSession?.isFlag(row: tile.positionX, col: tile.positionY) ?? false) {
                                 tile.state = .FLAG
                             } else {
-                                tile.state = .EMPTY
+                                tile.state = .NUMBER
+                                tile.closeBombsCount = gameSession?.getCloseBombsCount(row: tile.positionX, col: tile.positionY) ?? 0
                             }
                         } else {
                             tile.state = .HIDDEN
