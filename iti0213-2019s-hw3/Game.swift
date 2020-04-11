@@ -62,8 +62,28 @@ class Game {
         return count
     }
     
+    func getCloseFlagsCount(row: Int, col: Int) -> Int {
+        var count: Int = 0
+        for r in -1...1 {
+            for c in -1...1 {
+                if (row + r >= 0 && col + c >= 0 && row + r < rows && col + c < cols) {
+                    if (isFlag(row: row + r, col: col + c)) {
+                        count += 1
+                    }
+                }
+            }
+        }
+        return count
+    }
+    
     func openTile(row: Int, col: Int) {
         opened[row][col] = true
+        
+        if (getCloseBombsCount(row: row, col: col) > getCloseFlagsCount(row: row, col: col)) {
+            return
+        }
+        
+        
         for r in -1...1 {
             for c in -1...1 {
                 if (!(r == 0 && c == 0) && row + r >= 0 && col + c >= 0 && row + r < rows && col + c < cols) {
