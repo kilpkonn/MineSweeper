@@ -12,6 +12,8 @@ class MinesweeperViewController: UIViewController {
 
     @IBOutlet weak var gameBoard: UIStackView!
     
+    private var gameSession: Game?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,10 @@ class MinesweeperViewController: UIViewController {
                 columnStack.addArrangedSubview(tile)
             }
         }
+        gameSession = Game(rows: gameBoard.arrangedSubviews.count,
+                           cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
+                           level: 3)
+        updateTiles()
     }
     
     @IBAction func addColumn(_ sender: Any) {
@@ -70,6 +76,11 @@ class MinesweeperViewController: UIViewController {
             }
         }
         gameBoard.addArrangedSubview(columnStack)
+        
+        gameSession = Game(rows: gameBoard.arrangedSubviews.count,
+        cols: columnStack.arrangedSubviews.count,
+        level: 3)
+        updateTiles()
     }
     
     @IBAction func removeRow(_ sender: Any) {
@@ -81,6 +92,10 @@ class MinesweeperViewController: UIViewController {
                 }
             }
         }
+        gameSession = Game(rows: gameBoard.arrangedSubviews.count,
+                           cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
+                           level: 3)
+        updateTiles()
     }
     
     @IBAction func removeColumn(_ sender: Any) {
@@ -91,6 +106,11 @@ class MinesweeperViewController: UIViewController {
             }
             gameBoard.removeArrangedSubview(col)
             col.removeFromSuperview()
+            
+            gameSession = Game(rows: gameBoard.arrangedSubviews.count,
+                               cols: col.arrangedSubviews.count,
+                               level: 3)
+            updateTiles()
         }
     }
     
@@ -102,6 +122,28 @@ class MinesweeperViewController: UIViewController {
         }
     }
     
+    private func updateTiles() {
+        for row in gameBoard.arrangedSubviews {
+            if let rowStack = row as? UIStackView {
+                for col in rowStack.arrangedSubviews {
+                    if let tile = col as? UITileView {
+                        if (gameSession?.opened[tile.positionX][tile.positionY] ?? false) {
+                            if ((gameSession?.isBomb(row: tile.positionX, col: tile.positionY)) ?? true) {
+                                tile.state = .BOMB // todo bait bombs
+                            } else if (gameSession?.isFlag(row: tile.positionX, col: tile.positionY) ?? false) {
+                                tile.state = .FLAG
+                            } else {
+                                tile.state = .EMPTY
+                            }
+                        } else {
+                            tile.state = .HIDDEN
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     @objc private func handleTap(gesture: UITapGestureRecognizer) {
         switch gesture.state {
         case .ended:
@@ -110,6 +152,8 @@ class MinesweeperViewController: UIViewController {
                 // handle tap
                 view.state = UITileView.TileState.BOMB
                 print("Tap at (\(view.positionX), \(view.positionY))")
+                gameSession?.openTile(row: view.positionX, col: view.positionY)
+                updateTiles()
             }
         default:
             break
