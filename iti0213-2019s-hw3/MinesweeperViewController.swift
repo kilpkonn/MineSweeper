@@ -49,7 +49,7 @@ class MinesweeperViewController: UIViewController {
         for (i, subView) in gameBoard.arrangedSubviews.enumerated() {
             if let columnStack = subView as? UIStackView {
                 let tile = UITileView(frame: CGRect.zero, x: i, y: columnStack.arrangedSubviews.count)
-                tile.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MinesweeperViewController.handleTap(gesture:))))
+                addGestureRecognizers(tile: tile)
                 columnStack.addArrangedSubview(tile)
             }
         }
@@ -71,7 +71,7 @@ class MinesweeperViewController: UIViewController {
             let rowCount = firstColView.arrangedSubviews.count
             for y in 0..<rowCount {
                 let tile = UITileView(frame: CGRect.zero, x: gameBoard.arrangedSubviews.count, y: y)
-                tile.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MinesweeperViewController.handleTap(gesture:))))
+                addGestureRecognizers(tile: tile)
                 columnStack.addArrangedSubview(tile)
             }
         }
@@ -82,6 +82,16 @@ class MinesweeperViewController: UIViewController {
         level: 3)
         updateTiles()
     }
+    
+    private func addGestureRecognizers(tile: UITileView) {
+        let singleTapRec = UITapGestureRecognizer(target: self, action: #selector(MinesweeperViewController.handleTap(gesture:)))
+        tile.addGestureRecognizer(singleTapRec)
+        let doubleTapRec = UITapGestureRecognizer(target: self, action: #selector(MinesweeperViewController.handleDoubleTap(gesture:)))
+        doubleTapRec.numberOfTapsRequired = 2
+        tile.addGestureRecognizer(doubleTapRec)
+        singleTapRec.require(toFail: doubleTapRec)
+    }
+    
     
     @IBAction func removeRow(_ sender: Any) {
         for col in gameBoard.arrangedSubviews {
@@ -128,14 +138,18 @@ class MinesweeperViewController: UIViewController {
                 for col in rowStack.arrangedSubviews {
                     if let tile = col as? UITileView {
                         if (gameSession?.opened[tile.positionX][tile.positionY] ?? false) {
-                            if ((gameSession?.isBomb(row: tile.positionX, col: tile.positionY)) ?? true) {
-                                tile.state = .BOMB // todo bait bombs
-                            } else if (gameSession?.isFlag(row: tile.positionX, col: tile.positionY) ?? false) {
-                                tile.state = .FLAG
+                            if ((gameSession?.isBomb(row: tile.positionX, col: tile.positionY)) ?? false) {
+                                if (gameSession?.isFlag(row: tile.positionX, col: tile.positionY) ?? false) {
+                                    tile.state = .BAIT
+                                } else {
+                                    tile.state = .BOMB
+                                }
                             } else {
                                 tile.state = .NUMBER
                                 tile.closeBombsCount = gameSession?.getCloseBombsCount(row: tile.positionX, col: tile.positionY) ?? 0
                             }
+                        } else if (gameSession?.isFlag(row: tile.positionX, col: tile.positionY) ?? false) {
+                            tile.state = .FLAG
                         } else {
                             tile.state = .HIDDEN
                         }
@@ -146,8 +160,7 @@ class MinesweeperViewController: UIViewController {
     }
     
     @objc private func handleTap(gesture: UITapGestureRecognizer) {
-        switch gesture.state {
-        case .ended:
+        if (gesture.state == .ended) {
             print("Tap ended")
             if let view = gesture.view as? UITileView {
                 // handle tap
@@ -156,8 +169,19 @@ class MinesweeperViewController: UIViewController {
                 gameSession?.openTile(row: view.positionX, col: view.positionY)
                 updateTiles()
             }
-        default:
-            break
+        }
+    }
+    
+    @objc private func handleDoubleTap(gesture: UITapGestureRecognizer) {
+        if (gesture.state == .ended) {
+            print("Tap ended")
+            if let view = gesture.view as? UITileView {
+                // handle tap
+                view.state = UITileView.TileState.BOMB
+                print("Double Tap at (\(view.positionX), \(view.positionY))")
+                gameSession?.addFlag(row: view.positionX, col: view.positionY)
+                updateTiles()
+            }
         }
     }
 

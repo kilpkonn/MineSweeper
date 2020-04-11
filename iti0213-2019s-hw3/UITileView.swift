@@ -73,6 +73,7 @@ class UITileView: UIView {
         case .NUMBER:
             drawText(text: closeBombsCount > 0 ? String(closeBombsCount) : "", color: getNumberColor(number: closeBombsCount))
         case .FLAG:
+            drawHidden()
             drawText(text: "🚩", color: UIColor.black)
         case .BAIT:
             drawText(text: "💣", color: UIColor.black)
