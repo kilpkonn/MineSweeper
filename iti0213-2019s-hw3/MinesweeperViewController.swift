@@ -16,23 +16,29 @@ class MinesweeperViewController: UIViewController {
     
     private var gameSession: Game?
     private var level: Int = 1
+    private var timerLoop: Timer?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateOrientation()
-        
+        minesCount.text = "\(gameSession?.bombCount ?? 0) 💣"
+        timerLoop = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.update()})
         NotificationCenter.default.addObserver(self, selector: #selector(updateOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     @IBAction func selectLevel1(_ sender: Any) {
         level = 1
+        startGame()
     }
     @IBAction func selectLevel2(_ sender: Any) {
         level = 2
+        startGame()
     }
     @IBAction func selectLevel3(_ sender: Any) {
         level = 3
+        startGame()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -42,6 +48,19 @@ class MinesweeperViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         updateOrientation()
+    }
+    
+    func update() {
+        timer.text  = "\(Int(gameSession?.getSecondsElapsed() ?? 0) / 60):\(String(format:"%02d",Int(gameSession?.getSecondsElapsed() ?? 0) % 60))"
+    }
+    
+    private func startGame() {
+        gameSession = Game(rows: gameBoard.arrangedSubviews.count,
+                           cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
+                           level: level)
+        
+        minesCount.text = "\(gameSession?.bombCount ?? 0) 💣"
+        updateTiles()
     }
     
     private func createColumnStack() -> UIStackView {
@@ -66,9 +85,7 @@ class MinesweeperViewController: UIViewController {
                 columnStack.addArrangedSubview(tile)
             }
         }
-        gameSession = Game(rows: gameBoard.arrangedSubviews.count,
-                           cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
-                           level: level)
+        startGame()
         updateTiles()
     }
     
@@ -90,9 +107,7 @@ class MinesweeperViewController: UIViewController {
         }
         gameBoard.addArrangedSubview(columnStack)
         
-        gameSession = Game(rows: gameBoard.arrangedSubviews.count,
-        cols: columnStack.arrangedSubviews.count,
-        level: level)
+        startGame()
         updateTiles()
     }
     
@@ -115,9 +130,7 @@ class MinesweeperViewController: UIViewController {
                 }
             }
         }
-        gameSession = Game(rows: gameBoard.arrangedSubviews.count,
-                           cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
-                           level: level)
+        startGame()
         updateTiles()
     }
     
@@ -130,9 +143,7 @@ class MinesweeperViewController: UIViewController {
             gameBoard.removeArrangedSubview(col)
             col.removeFromSuperview()
             
-            gameSession = Game(rows: gameBoard.arrangedSubviews.count,
-                               cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
-                               level: level)
+            startGame()
             updateTiles()
         }
     }
