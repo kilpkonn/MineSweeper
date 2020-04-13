@@ -14,6 +14,12 @@ class MinesweeperViewController: UIViewController {
     @IBOutlet weak var minesCount: UITextField!
     @IBOutlet weak var timer: UITextField!
     
+    @IBOutlet weak var baseStackView: UIStackView!
+    @IBOutlet weak var menuStackView: UIStackView!
+    @IBOutlet weak var levelsStackView: UIStackView!
+    @IBOutlet weak var sizeStackView: UIStackView!
+    
+    
     private var gameSession: Game?
     private var level: Int = 1
     private var timerLoop: Timer?
