@@ -11,8 +11,11 @@ import UIKit
 class MinesweeperViewController: UIViewController {
 
     @IBOutlet weak var gameBoard: UIStackView!
+    @IBOutlet weak var minesCount: UITextField!
+    @IBOutlet weak var timer: UITextField!
     
     private var gameSession: Game?
+    private var level: Int = 1
     
     
     override func viewDidLoad() {
@@ -20,6 +23,16 @@ class MinesweeperViewController: UIViewController {
         updateOrientation()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    @IBAction func selectLevel1(_ sender: Any) {
+        level = 1
+    }
+    @IBAction func selectLevel2(_ sender: Any) {
+        level = 2
+    }
+    @IBAction func selectLevel3(_ sender: Any) {
+        level = 3
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -55,7 +68,7 @@ class MinesweeperViewController: UIViewController {
         }
         gameSession = Game(rows: gameBoard.arrangedSubviews.count,
                            cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
-                           level: 3)
+                           level: level)
         updateTiles()
     }
     
@@ -79,7 +92,7 @@ class MinesweeperViewController: UIViewController {
         
         gameSession = Game(rows: gameBoard.arrangedSubviews.count,
         cols: columnStack.arrangedSubviews.count,
-        level: 3)
+        level: level)
         updateTiles()
     }
     
@@ -104,7 +117,7 @@ class MinesweeperViewController: UIViewController {
         }
         gameSession = Game(rows: gameBoard.arrangedSubviews.count,
                            cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
-                           level: 3)
+                           level: level)
         updateTiles()
     }
     
@@ -118,8 +131,8 @@ class MinesweeperViewController: UIViewController {
             col.removeFromSuperview()
             
             gameSession = Game(rows: gameBoard.arrangedSubviews.count,
-                               cols: col.arrangedSubviews.count,
-                               level: 3)
+                               cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
+                               level: level)
             updateTiles()
         }
     }
