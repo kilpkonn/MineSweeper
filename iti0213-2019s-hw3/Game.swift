@@ -27,7 +27,7 @@ class Game {
         self.rows = rows
         self.cols = cols
         bombCount = Int(0.1 * Double(level * rows * cols)) + 1
-        for _ in 0..<bombCount {
+        for _ in 0...(bombCount - 1) {
             var r: Int
             var c: Int
             repeat {

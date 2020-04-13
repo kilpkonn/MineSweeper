@@ -157,8 +157,28 @@ class MinesweeperViewController: UIViewController {
     @objc func updateOrientation() {
         if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
             // landscape
+            baseStackView.axis = .horizontal
+            menuStackView.axis = .vertical
+            levelsStackView.axis = .vertical
+            sizeStackView.axis = .vertical
+            gameBoard.axis = .vertical
+            for col in gameBoard.arrangedSubviews {
+                if let colStack = col as? UIStackView {
+                    colStack.axis = .horizontal
+                }
+            }
         } else {
             // default to portrait
+            baseStackView.axis = .vertical
+            menuStackView.axis = .vertical
+            levelsStackView.axis = .horizontal
+            sizeStackView.axis = .horizontal
+            gameBoard.axis = .horizontal
+            for col in gameBoard.arrangedSubviews {
+                if let colStack = col as? UIStackView {
+                    colStack.axis = .vertical
+                }
+            }
         }
     }
     
