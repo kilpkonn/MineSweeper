@@ -24,6 +24,9 @@ class MinesweeperViewController: UIViewController {
     private var level: Int = 1
     private var timerLoop: Timer?
     
+    private var maxRows: Int = 1
+    private var maxCols: Int = 1
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +82,10 @@ class MinesweeperViewController: UIViewController {
     }
     
     @IBAction func addRow(_ sender: Any) {
+        if ((gameBoard.arrangedSubviews.first as? UIStackView)?.arrangedSubviews.count ?? 0 >= maxRows) {
+            return
+        }
+        
         if (gameBoard.arrangedSubviews.count == 0) {
             let columnStack = createColumnStack()
             gameBoard.addArrangedSubview(columnStack)
@@ -96,10 +103,17 @@ class MinesweeperViewController: UIViewController {
     }
     
     @IBAction func addColumn(_ sender: Any) {
+        
         if (gameBoard.arrangedSubviews.count == 0) {
             addRow(sender)
             return
         }
+        
+        if (gameBoard.arrangedSubviews.count >= maxCols) {
+            return
+        }
+        
+        
         let columnStack = createColumnStack()
     
         
@@ -180,6 +194,8 @@ class MinesweeperViewController: UIViewController {
                 }
             }
         }
+        maxCols = Int(UIScreen.main.bounds.width / UITileView.minSize)
+        maxRows = Int(UIScreen.main.bounds.height / UITileView.minSize)
     }
     
     private func updateTiles() {

@@ -18,7 +18,8 @@ class UITileView: UIView {
         case BAIT
     }
     
-    var state: TileState = TileState.HIDDEN {didSet {setNeedsDisplay()}}
+    var state: TileState = .HIDDEN {didSet {setNeedsDisplay()}}
+    static let minSize: CGFloat = 50
     
     @IBInspectable
     var colorHidden: UIColor = UIColor.gray {didSet {setNeedsDisplay()}}
@@ -88,18 +89,18 @@ class UITileView: UIView {
         
         colorBorder.set()
         
-        let path = UIBezierPath(roundedRect: bounds, cornerRadius: 10)
+        let path = UIBezierPath(roundedRect: bounds, cornerRadius: CGFloat(size / 10))
         path.fill()
         
         colorBackground.set()
-        let centerPath = UIBezierPath(roundedRect: bounds.insetBy(dx: 4, dy: 4), cornerRadius: 10)
+        let centerPath = UIBezierPath(roundedRect: bounds.insetBy(dx: 4, dy: 4), cornerRadius: CGFloat(size / 10))
         centerPath.fill()
 
     }
     
     private func drawHidden() {
         colorBorder.set()
-        let path = UIBezierPath(roundedRect: bounds, cornerRadius: 10)
+        let path = UIBezierPath(roundedRect: bounds, cornerRadius: CGFloat(size / 10))
         path.fill()
     }
     
