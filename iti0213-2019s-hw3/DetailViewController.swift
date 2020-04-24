@@ -15,11 +15,23 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var flagIconTextField: UITextField!
     @IBOutlet weak var difficultySlider: UISlider!
     
+    override func viewDidLoad() {
+        bombIconTextField.text = UITileView.bombIcon
+        flagIconTextField.text = UITileView.flagIcon
+    }
 
     @IBAction func onLevel1TouchUpInside(_ sender: Any) {
+        difficultySlider.value = 0.1
     }
     @IBAction func onLevel2TouchUpInside(_ sender: Any) {
+        difficultySlider.value = 0.2
     }
     @IBAction func onLevel3TouchUpInside(_ sender: Any) {
+        difficultySlider.value = 0.3
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        UITileView.bombIcon = bombIconTextField.text ?? UITileView.bombIcon
+        UITileView.flagIcon = flagIconTextField.text ?? UITileView.flagIcon
     }
 }

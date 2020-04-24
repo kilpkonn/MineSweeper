@@ -41,6 +41,9 @@ class UITileView: UIView {
     @IBInspectable
     var colorCross: UIColor = UIColor.red {didSet {setNeedsDisplay()}}
     
+    static var bombIcon = "💣"
+    static var flagIcon = "🚩"
+    
     
     @IBInspectable
     var positionX: Int = 0
@@ -70,14 +73,14 @@ class UITileView: UIView {
         case .HIDDEN:
             drawHidden()
         case .BOMB:
-            drawText(text: "💣", color: UIColor.black)
+            drawText(text: UITileView.bombIcon, color: UIColor.black)
         case .NUMBER:
             drawText(text: closeBombsCount > 0 ? String(closeBombsCount) : "", color: getNumberColor(number: closeBombsCount))
         case .FLAG:
             drawHidden()
-            drawText(text: "🚩", color: UIColor.black)
+            drawText(text: UITileView.flagIcon, color: UIColor.black)
         case .BAIT:
-            drawText(text: "💣", color: UIColor.black)
+            drawText(text: UITileView.bombIcon, color: UIColor.black)
             drawCross()
         }
     }

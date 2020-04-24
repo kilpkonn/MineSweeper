@@ -27,6 +27,8 @@ class MinesweeperViewController: UIViewController {
     private var maxRows: Int = 1
     private var maxCols: Int = 1
     
+    private var landscape = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +76,7 @@ class MinesweeperViewController: UIViewController {
     
     private func createColumnStack() -> UIStackView {
         let columnStack = UIStackView()
-        columnStack.axis = .vertical
+        columnStack.axis = landscape ? .horizontal : .vertical
         columnStack.alignment = .fill
         columnStack.distribution = .fillEqually
         columnStack.spacing = 0
@@ -176,6 +178,7 @@ class MinesweeperViewController: UIViewController {
             levelsStackView.axis = .vertical
             sizeStackView.axis = .vertical
             gameBoard.axis = .vertical
+            landscape = true
             for col in gameBoard.arrangedSubviews {
                 if let colStack = col as? UIStackView {
                     colStack.axis = .horizontal
@@ -188,6 +191,7 @@ class MinesweeperViewController: UIViewController {
             levelsStackView.axis = .horizontal
             sizeStackView.axis = .horizontal
             gameBoard.axis = .horizontal
+            landscape = false
             for col in gameBoard.arrangedSubviews {
                 if let colStack = col as? UIStackView {
                     colStack.axis = .vertical
