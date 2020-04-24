@@ -22,11 +22,11 @@ class Game {
     var opened: [[Bool]] = []
     var lost: Bool = false
     
-    init(rows: Int, cols: Int, level: Int) {
+    init(rows: Int, cols: Int, level: Float) {
         opened = Array(repeating: Array(repeating: false, count: cols), count: rows)
         self.rows = rows
         self.cols = cols
-        bombCount = Int(0.1 * Double(level * rows * cols)) + 1
+        bombCount = Int(level * Float(rows * cols)) + 1
         for _ in 0..<bombCount {
             var r: Int
             var c: Int

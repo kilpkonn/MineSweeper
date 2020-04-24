@@ -21,7 +21,7 @@ class MinesweeperViewController: UIViewController {
     
     
     private var gameSession: Game?
-    private var level: Int = 1
+    static var difficulty: Float = 0.1
     private var timerLoop: Timer?
     
     private var maxRows: Int = 1
@@ -33,22 +33,19 @@ class MinesweeperViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateOrientation()
-        minesCount.text = "\(gameSession?.bombCount ?? 0) 💣"
+        minesCount.text = "\(gameSession?.bombCount ?? 0) \(UITileView.bombIcon)"
         timerLoop = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
             self.update()})
         NotificationCenter.default.addObserver(self, selector: #selector(updateOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     @IBAction func selectLevel1(_ sender: Any) {
-        level = 1
         startGame()
     }
     @IBAction func selectLevel2(_ sender: Any) {
-        level = 2
         startGame()
     }
     @IBAction func selectLevel3(_ sender: Any) {
-        level = 3
         startGame()
     }
     
@@ -68,9 +65,9 @@ class MinesweeperViewController: UIViewController {
     private func startGame() {
         gameSession = Game(rows: gameBoard.arrangedSubviews.count,
                            cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
-                           level: level)
+                           level: MinesweeperViewController.difficulty)
         
-        minesCount.text = "\(gameSession?.bombCount ?? 0) 💣"
+        minesCount.text = "\(gameSession?.bombCount ?? 0) \(UITileView.bombIcon)"
         updateTiles()
     }
     

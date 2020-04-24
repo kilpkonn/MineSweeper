@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
         difficultySlider.value = 0.3
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func viewWillDisappear(_ animated: Bool) {
         UITileView.bombIcon = bombIconTextField.text ?? UITileView.bombIcon
         UITileView.flagIcon = flagIconTextField.text ?? UITileView.flagIcon
     }
