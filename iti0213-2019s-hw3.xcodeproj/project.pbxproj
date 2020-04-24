@@ -15,6 +15,7 @@
 		8132F30C24404A4600C28BC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8132F30B24404A4600C28BC9 /* Assets.xcassets */; };
 		8132F30F24404A4600C28BC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8132F30D24404A4600C28BC9 /* LaunchScreen.storyboard */; };
 		8132F31724404D7300C28BC9 /* UITileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132F31624404D7300C28BC9 /* UITileView.swift */; };
+		818C25412452CCA900BFE6C0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25402452CCA900BFE6C0 /* DetailViewController.swift */; };
 		81C5C741244D7DFB0079EEAF /* MasterSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5C740244D7DFB0079EEAF /* MasterSplitViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		8132F30E24404A4600C28BC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8132F31024404A4600C28BC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8132F31624404D7300C28BC9 /* UITileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITileView.swift; sourceTree = "<group>"; };
+		818C25402452CCA900BFE6C0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		81C5C740244D7DFB0079EEAF /* MasterSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterSplitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 				8132F31624404D7300C28BC9 /* UITileView.swift */,
 				81015D3E2441A4CA006B7A29 /* Game.swift */,
 				81C5C740244D7DFB0079EEAF /* MasterSplitViewController.swift */,
+				818C25402452CCA900BFE6C0 /* DetailViewController.swift */,
 			);
 			path = "iti0213-2019s-hw3";
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				8132F31724404D7300C28BC9 /* UITileView.swift in Sources */,
 				8132F30524404A4400C28BC9 /* SceneDelegate.swift in Sources */,
 				81C5C741244D7DFB0079EEAF /* MasterSplitViewController.swift in Sources */,
+				818C25412452CCA900BFE6C0 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
