@@ -206,45 +206,57 @@
             </objects>
             <point key="canvasLocation" x="1338.75" y="-640"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="SE6-pb-8eG">
             <objects>
-                <viewController id="chU-dE-Mno" sceneMemberID="viewController">
+                <viewController id="chU-dE-Mno" customClass="DetailViewController" customModule="iti0213_2019s_hw3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xc2-mP-X42">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="70N-gy-nlW">
-                                <rect key="frame" x="55.5" y="135" width="209" height="254"/>
+                                <rect key="frame" x="51.5" y="135" width="217" height="254"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="rt7-Re-weX">
-                                        <rect key="frame" x="0.0" y="0.0" width="209" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="217" height="34"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqk-vl-SPn">
-                                                <rect key="frame" x="0.0" y="0.0" width="63" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="71" height="34"/>
                                                 <state key="normal" title="Level 1"/>
+                                                <connections>
+                                                    <action selector="onLevel1TouchUpInside:" destination="JdN-kW-B8T" eventType="touchUpInside" id="ZXj-Cq-CBk"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbu-NF-Y55">
-                                                <rect key="frame" x="87" y="0.0" width="49" height="34"/>
+                                                <rect key="frame" x="95" y="0.0" width="49" height="34"/>
                                                 <state key="normal" title="Level 2"/>
+                                                <connections>
+                                                    <action selector="onLevel2TouchUpInside:" destination="JdN-kW-B8T" eventType="touchUpInside" id="9jI-Or-svv"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgZ-SH-Rwp">
-                                                <rect key="frame" x="160" y="0.0" width="49" height="34"/>
+                                                <rect key="frame" x="168" y="0.0" width="49" height="34"/>
                                                 <state key="normal" title="Level 3"/>
+                                                <connections>
+                                                    <action selector="onLevel3TouchUpInside:" destination="JdN-kW-B8T" eventType="touchUpInside" id="BXB-j2-W0Z"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Difficulty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfG-4d-gjk">
-                                        <rect key="frame" x="0.0" y="44" width="209" height="34"/>
+                                        <rect key="frame" x="0.0" y="44" width="217" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="1Xa-kb-9VH">
-                                        <rect key="frame" x="-2" y="88" width="213" height="35"/>
+                                        <rect key="frame" x="-2" y="88" width="221" height="35"/>
+                                        <connections>
+                                            <action selector="onDifficultyChanged:" destination="JdN-kW-B8T" eventType="valueChanged" id="Hue-xV-8FJ"/>
+                                        </connections>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peD-kA-Wfx">
-                                        <rect key="frame" x="0.0" y="132" width="209" height="34"/>
+                                        <rect key="frame" x="0.0" y="132" width="217" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom tile size (px):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-9O-gYf">
                                                 <rect key="frame" x="0.0" y="0.0" width="161" height="34"/>
@@ -253,41 +265,50 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lbz-q5-pdN">
-                                                <rect key="frame" x="161" y="0.0" width="48" height="34"/>
+                                                <rect key="frame" x="161" y="0.0" width="56" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="obTileSizeSet:" destination="JdN-kW-B8T" eventType="editingDidEnd" id="xPf-qo-urX"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="scm-aJ-KOA">
-                                        <rect key="frame" x="0.0" y="176" width="209" height="34"/>
+                                        <rect key="frame" x="0.0" y="176" width="217" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bomb icon:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-nC-Anh">
-                                                <rect key="frame" x="0.0" y="0.0" width="86.5" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NOz-CP-Sm2">
-                                                <rect key="frame" x="122.5" y="0.0" width="86.5" height="34"/>
+                                                <rect key="frame" x="126.5" y="0.0" width="90.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="onBombIconSet:" destination="JdN-kW-B8T" eventType="editingDidEnd" id="dNp-4c-q0G"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="cWB-x8-kQb">
-                                        <rect key="frame" x="0.0" y="220" width="209" height="34"/>
+                                        <rect key="frame" x="0.0" y="220" width="217" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flag icon:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adb-RX-VLa">
-                                                <rect key="frame" x="0.0" y="0.0" width="86.5" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bwN-mw-xet">
-                                                <rect key="frame" x="122.5" y="0.0" width="86.5" height="34"/>
+                                                <rect key="frame" x="126.5" y="0.0" width="90.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="onFlagIconSet:" destination="JdN-kW-B8T" eventType="editingDidEnd" id="urE-4j-txn"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -301,8 +322,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O36-MX-ZS2"/>
                     </view>
+                    <connections>
+                        <outlet property="bombIconTextField" destination="NOz-CP-Sm2" id="7mY-F4-K5h"/>
+                        <outlet property="difficultySlider" destination="1Xa-kb-9VH" id="sRC-1f-2IR"/>
+                        <outlet property="flagIconTextField" destination="bwN-mw-xet" id="TLn-l5-wNf"/>
+                        <outlet property="tileSizeTextField" destination="lbz-q5-pdN" id="7BM-7X-Pip"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ikn-MO-VMh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="JdN-kW-B8T" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1338.75" y="160"/>
         </scene>

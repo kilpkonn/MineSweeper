@@ -9,7 +9,17 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    @IBOutlet weak var tileSizeTextField: UITextField!
+    @IBOutlet weak var bombIconTextField: UITextField!
+    @IBOutlet weak var flagIconTextField: UITextField!
+    @IBOutlet weak var difficultySlider: UISlider!
+    
 
-   
+    @IBAction func onLevel1TouchUpInside(_ sender: Any) {
+    }
+    @IBAction func onLevel2TouchUpInside(_ sender: Any) {
+    }
+    @IBAction func onLevel3TouchUpInside(_ sender: Any) {
+    }
 }
-
