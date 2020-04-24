@@ -39,13 +39,7 @@ class MinesweeperViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
-    @IBAction func selectLevel1(_ sender: Any) {
-        startGame()
-    }
-    @IBAction func selectLevel2(_ sender: Any) {
-        startGame()
-    }
-    @IBAction func selectLevel3(_ sender: Any) {
+    @IBAction func onStartGame(_ sender: Any) {
         startGame()
     }
     
@@ -97,7 +91,6 @@ class MinesweeperViewController: UIViewController {
                 columnStack.addArrangedSubview(tile)
             }
         }
-        startGame()
         updateTiles()
     }
     
@@ -126,7 +119,6 @@ class MinesweeperViewController: UIViewController {
         }
         gameBoard.addArrangedSubview(columnStack)
         
-        startGame()
         updateTiles()
     }
     
@@ -149,7 +141,6 @@ class MinesweeperViewController: UIViewController {
                 }
             }
         }
-        startGame()
         updateTiles()
     }
     
@@ -162,7 +153,6 @@ class MinesweeperViewController: UIViewController {
             gameBoard.removeArrangedSubview(col)
             col.removeFromSuperview()
             
-            startGame()
             updateTiles()
         }
     }
@@ -220,6 +210,7 @@ class MinesweeperViewController: UIViewController {
                         } else {
                             tile.state = .HIDDEN
                         }
+                        tile.setNeedsDisplay()
                     }
                 }
             }
