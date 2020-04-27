@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
         bombIconTextField.text = UITileView.bombIcon
         flagIconTextField.text = UITileView.flagIcon
         themeSwitch.isOn = UITileView.isDarkTheme
+        tileSizeTextField.text = "\(UITileView.minSize)"
         self.view.backgroundColor = UITileView.isDarkTheme ? UIColor.lightGray : UIColor.white
     }
 
@@ -40,5 +41,7 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         UITileView.bombIcon = bombIconTextField.text ?? UITileView.bombIcon
         UITileView.flagIcon = flagIconTextField.text ?? UITileView.flagIcon
+        
+        UITileView.minSize = CGFloat(Float(tileSizeTextField.text ?? "1") ?? 1)
     }
 }

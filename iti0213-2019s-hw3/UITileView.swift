@@ -19,7 +19,7 @@ class UITileView: UIView {
     }
     
     var state: TileState = .HIDDEN {didSet {setNeedsDisplay()}}
-    static let minSize: CGFloat = 50
+    static var minSize: CGFloat = 50
     
     @IBInspectable
     var colorHidden: UIColor = UIColor.gray {didSet {setNeedsDisplay()}}
