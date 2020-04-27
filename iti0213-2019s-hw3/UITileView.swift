@@ -31,6 +31,15 @@ class UITileView: UIView {
     var colorBehind: UIColor = UIColor.white {didSet {setNeedsDisplay()}}
     
     @IBInspectable
+    var colorHiddenDark: UIColor = UIColor.darkGray {didSet {setNeedsDisplay()}}
+    @IBInspectable
+    var colorBorderDark: UIColor = UIColor.black {didSet {setNeedsDisplay()}}
+    @IBInspectable
+    var colorBackgroundDark: UIColor = UIColor.darkGray {didSet {setNeedsDisplay()}}
+    @IBInspectable
+    var colorBehindDark: UIColor = UIColor.lightGray {didSet {setNeedsDisplay()}}
+    
+    @IBInspectable
     var colorOne: UIColor = UIColor.blue {didSet {setNeedsDisplay()}}
     @IBInspectable
     var colorTwo: UIColor = UIColor.green {didSet {setNeedsDisplay()}}
@@ -43,6 +52,8 @@ class UITileView: UIView {
     
     static var bombIcon = "💣"
     static var flagIcon = "🚩"
+    
+    static var isDarkTheme = false
     
     
     @IBInspectable
@@ -86,23 +97,39 @@ class UITileView: UIView {
     }
     
     private func drawBorder() {
-        colorBehind.set()
+        if UITileView.isDarkTheme {
+            colorBehindDark.set()
+        } else {
+            colorBehind.set()
+        }
         let behindPath = UIBezierPath(roundedRect: bounds, cornerRadius: 0)
         behindPath.fill()
         
-        colorBorder.set()
+        if UITileView.isDarkTheme {
+            colorBorderDark.set()
+        } else {
+            colorBorder.set()
+        }
         
         let path = UIBezierPath(roundedRect: bounds, cornerRadius: CGFloat(size / 10))
         path.fill()
         
-        colorBackground.set()
+        if UITileView.isDarkTheme {
+            colorBackgroundDark.set()
+        } else {
+            colorBackground.set()
+        }
         let centerPath = UIBezierPath(roundedRect: bounds.insetBy(dx: 4, dy: 4), cornerRadius: CGFloat(size / 10))
         centerPath.fill()
 
     }
     
     private func drawHidden() {
-        colorBorder.set()
+        if UITileView.isDarkTheme {
+            colorBorderDark.set()
+        } else {
+            colorBorder.set()
+        }
         let path = UIBezierPath(roundedRect: bounds, cornerRadius: CGFloat(size / 10))
         path.fill()
     }

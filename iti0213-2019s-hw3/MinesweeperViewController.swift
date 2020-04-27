@@ -37,6 +37,8 @@ class MinesweeperViewController: UIViewController {
         timerLoop = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
             self.update()})
         NotificationCenter.default.addObserver(self, selector: #selector(updateOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
+        
+        self.view.backgroundColor = UITileView.isDarkTheme ? UIColor.lightGray : UIColor.white
     }
     
     @IBAction func onStartGame(_ sender: Any) {

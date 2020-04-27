@@ -14,10 +14,12 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var bombIconTextField: UITextField!
     @IBOutlet weak var flagIconTextField: UITextField!
     @IBOutlet weak var difficultySlider: UISlider!
+    @IBOutlet weak var themeSwitch: UISwitch!
     
     override func viewDidLoad() {
         bombIconTextField.text = UITileView.bombIcon
         flagIconTextField.text = UITileView.flagIcon
+        themeSwitch.isOn = UITileView.isDarkTheme
     }
 
     @IBAction func onLevel1TouchUpInside(_ sender: Any) {
@@ -28,6 +30,9 @@ class DetailViewController: UIViewController {
     }
     @IBAction func onLevel3TouchUpInside(_ sender: Any) {
         difficultySlider.value = 0.3
+    }
+    @IBAction func onPlaygroundColorChenged(_ sender: UISwitch) {
+        UITileView.isDarkTheme = sender.isOn
     }
     
     override func viewWillDisappear(_ animated: Bool) {

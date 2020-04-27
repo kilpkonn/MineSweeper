@@ -145,7 +145,7 @@
             <objects>
                 <navigationController id="LQX-tx-vtV" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dzT-66-fQf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -165,14 +165,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0u-Tr-sth">
-                                <rect key="frame" x="135.5" y="247" width="49" height="30"/>
+                                <rect key="frame" x="110.5" y="236.5" width="99" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Setting"/>
                                 <connections>
                                     <segue destination="chU-dE-Mno" kind="showDetail" id="xsb-Aa-Pvq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1E-0d-Lvk">
-                                <rect key="frame" x="145" y="169" width="30" height="30"/>
+                                <rect key="frame" x="130.5" y="137.5" width="59" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Play"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="showDetail" id="PPD-Vh-stJ"/>
@@ -203,13 +205,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="70N-gy-nlW">
-                                <rect key="frame" x="41.5" y="135" width="237" height="254"/>
+                                <rect key="frame" x="51.5" y="113" width="217" height="298"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="rt7-Re-weX">
-                                        <rect key="frame" x="0.0" y="0.0" width="237" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="217" height="34"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqk-vl-SPn">
-                                                <rect key="frame" x="0.0" y="0.0" width="63" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="56.5" height="34"/>
                                                 <state key="normal" title="Level 1"/>
                                                 <connections>
                                                     <action selector="onLevel1TouchUpInside:" destination="JdN-kW-B8T" eventType="touchUpInside" id="ZXj-Cq-CBk"/>
@@ -217,7 +219,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbu-NF-Y55">
-                                                <rect key="frame" x="87" y="0.0" width="63" height="34"/>
+                                                <rect key="frame" x="80.5" y="0.0" width="56" height="34"/>
                                                 <state key="normal" title="Level 2"/>
                                                 <connections>
                                                     <action selector="onLevel2TouchUpInside:" destination="JdN-kW-B8T" eventType="touchUpInside" id="9jI-Or-svv"/>
@@ -225,7 +227,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WgZ-SH-Rwp">
-                                                <rect key="frame" x="174" y="0.0" width="63" height="34"/>
+                                                <rect key="frame" x="160.5" y="0.0" width="56.5" height="34"/>
                                                 <state key="normal" title="Level 3"/>
                                                 <connections>
                                                     <action selector="onLevel3TouchUpInside:" destination="JdN-kW-B8T" eventType="touchUpInside" id="BXB-j2-W0Z"/>
@@ -235,19 +237,36 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Difficulty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfG-4d-gjk">
-                                        <rect key="frame" x="0.0" y="44" width="237" height="34"/>
+                                        <rect key="frame" x="0.0" y="44" width="217" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.0" maxValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1Xa-kb-9VH">
-                                        <rect key="frame" x="-2" y="88" width="241" height="35"/>
+                                        <rect key="frame" x="-2" y="88" width="221" height="35"/>
                                         <connections>
                                             <action selector="onDifficultyChanged:" destination="JdN-kW-B8T" eventType="valueChanged" id="Hue-xV-8FJ"/>
                                         </connections>
                                     </slider>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJC-nF-xLY">
+                                        <rect key="frame" x="0.0" y="132" width="217" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark playground:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xej-Bp-22h">
+                                                <rect key="frame" x="0.0" y="0.0" width="168" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jh8-rE-NHh">
+                                                <rect key="frame" x="168" y="0.0" width="51" height="34"/>
+                                                <connections>
+                                                    <action selector="onPlaygroundColorChenged:" destination="chU-dE-Mno" eventType="valueChanged" id="Pqa-Ui-oCf"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peD-kA-Wfx">
-                                        <rect key="frame" x="0.0" y="132" width="237" height="34"/>
+                                        <rect key="frame" x="0.0" y="176" width="217" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom tile size (px):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-9O-gYf">
                                                 <rect key="frame" x="0.0" y="0.0" width="161" height="34"/>
@@ -256,7 +275,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lbz-q5-pdN">
-                                                <rect key="frame" x="161" y="0.0" width="76" height="34"/>
+                                                <rect key="frame" x="161" y="0.0" width="56" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -266,16 +285,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="scm-aJ-KOA">
-                                        <rect key="frame" x="0.0" y="176" width="237" height="34"/>
+                                        <rect key="frame" x="0.0" y="220" width="217" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bomb icon:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-nC-Anh">
-                                                <rect key="frame" x="0.0" y="0.0" width="100.5" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NOz-CP-Sm2">
-                                                <rect key="frame" x="136.5" y="0.0" width="100.5" height="34"/>
+                                                <rect key="frame" x="126.5" y="0.0" width="90.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -285,16 +304,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="cWB-x8-kQb">
-                                        <rect key="frame" x="0.0" y="220" width="237" height="34"/>
+                                        <rect key="frame" x="0.0" y="264" width="217" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flag icon:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adb-RX-VLa">
-                                                <rect key="frame" x="0.0" y="0.0" width="100.5" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bwN-mw-xet">
-                                                <rect key="frame" x="136.5" y="0.0" width="100.5" height="34"/>
+                                                <rect key="frame" x="126.5" y="0.0" width="90.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -317,6 +336,7 @@
                         <outlet property="bombIconTextField" destination="NOz-CP-Sm2" id="7mY-F4-K5h"/>
                         <outlet property="difficultySlider" destination="1Xa-kb-9VH" id="sRC-1f-2IR"/>
                         <outlet property="flagIconTextField" destination="bwN-mw-xet" id="TLn-l5-wNf"/>
+                        <outlet property="themeSwitch" destination="jh8-rE-NHh" id="MNz-gg-Xl5"/>
                         <outlet property="tileSizeTextField" destination="lbz-q5-pdN" id="7BM-7X-Pip"/>
                     </connections>
                 </viewController>
@@ -340,6 +360,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7Hq-2a-xCe"/>
+        <segue reference="PPD-Vh-stJ"/>
     </inferredMetricsTieBreakers>
 </document>
