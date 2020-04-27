@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
         bombIconTextField.text = UITileView.bombIcon
         flagIconTextField.text = UITileView.flagIcon
         themeSwitch.isOn = UITileView.isDarkTheme
+        self.view.backgroundColor = UITileView.isDarkTheme ? UIColor.lightGray : UIColor.white
     }
 
     @IBAction func onLevel1TouchUpInside(_ sender: Any) {
@@ -33,6 +34,7 @@ class DetailViewController: UIViewController {
     }
     @IBAction func onPlaygroundColorChenged(_ sender: UISwitch) {
         UITileView.isDarkTheme = sender.isOn
+        self.view.backgroundColor = UITileView.isDarkTheme ? UIColor.lightGray : UIColor.white
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -15,7 +15,6 @@ class MasterSplitViewController: UISplitViewController, UISplitViewControllerDel
 
         self.delegate = self
         self.preferredDisplayMode = .allVisible
-        
     }
     
 

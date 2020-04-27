@@ -145,7 +145,7 @@
             <objects>
                 <navigationController id="LQX-tx-vtV" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dzT-66-fQf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -156,10 +156,10 @@
             </objects>
             <point key="canvasLocation" x="53" y="-640"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="xOF-pv-8oF">
             <objects>
-                <viewController id="vSV-me-fC2" sceneMemberID="viewController">
+                <viewController id="vSV-me-fC2" customClass="MenuViewController" customModule="iti0213_2019s_hw3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EXV-a0-lsv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -191,6 +191,10 @@
                         <viewLayoutGuide key="safeArea" id="36H-4v-ZF1"/>
                     </view>
                     <navigationItem key="navigationItem" id="98U-vX-B1V"/>
+                    <connections>
+                        <outlet property="playButton" destination="h1E-0d-Lvk" id="3MC-AM-hsg"/>
+                        <outlet property="settingsButton" destination="Q0u-Tr-sth" id="MuJ-5o-0S4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGk-c7-fXs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
