@@ -93,6 +93,9 @@ class MinesweeperViewController: UIViewController {
                 columnStack.addArrangedSubview(tile)
             }
         }
+        gameSession = Game(rows: gameBoard.arrangedSubviews.count,
+                           cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
+                           level: MinesweeperViewController.difficulty)
         updateTiles()
     }
     
@@ -120,7 +123,9 @@ class MinesweeperViewController: UIViewController {
             }
         }
         gameBoard.addArrangedSubview(columnStack)
-        
+        gameSession = Game(rows: gameBoard.arrangedSubviews.count,
+                           cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
+                           level: MinesweeperViewController.difficulty)
         updateTiles()
     }
     
@@ -143,6 +148,9 @@ class MinesweeperViewController: UIViewController {
                 }
             }
         }
+        gameSession = Game(rows: gameBoard.arrangedSubviews.count,
+                           cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
+                           level: MinesweeperViewController.difficulty)
         updateTiles()
     }
     
@@ -154,7 +162,9 @@ class MinesweeperViewController: UIViewController {
             }
             gameBoard.removeArrangedSubview(col)
             col.removeFromSuperview()
-            
+            gameSession = Game(rows: gameBoard.arrangedSubviews.count,
+                               cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
+                               level: MinesweeperViewController.difficulty)
             updateTiles()
         }
     }
@@ -187,8 +197,8 @@ class MinesweeperViewController: UIViewController {
                 }
             }
         }
-        maxCols = Int(UIScreen.main.bounds.width / UITileView.minSize)
-        maxRows = Int(UIScreen.main.bounds.height / UITileView.minSize)
+        maxCols = Int((landscape ? UIScreen.main.bounds.height : UIScreen.main.bounds.width) / UITileView.minSize)
+        maxRows = Int((landscape ? UIScreen.main.bounds.width : UIScreen.main.bounds.height) / UITileView.minSize)
     }
     
     private func updateTiles() {

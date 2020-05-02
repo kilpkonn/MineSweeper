@@ -108,6 +108,9 @@ class Game {
     }
     
     func openTile(row: Int, col: Int) {
+        if lost {
+            return
+        }
         opened[row][col] = true
         if isBomb(row: row, col: col) {
             lost = true
