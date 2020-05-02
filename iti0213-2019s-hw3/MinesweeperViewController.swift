@@ -59,6 +59,9 @@ class MinesweeperViewController: UIViewController {
     }
     
     private func startGame() {
+        if gameBoard.arrangedSubviews.count == 0 {
+            return
+        }
         gameSession = Game(rows: gameBoard.arrangedSubviews.count,
                            cols: (gameBoard.arrangedSubviews.first as? UIStackView)!.arrangedSubviews.count,
                            level: MinesweeperViewController.difficulty)
